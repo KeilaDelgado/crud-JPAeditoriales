@@ -5,16 +5,16 @@
 package pe.edu.ucs.jpa2022.service;
 
 import java.util.List;
-import pe.edu.ucs.jpa2022.entity.Post;
+import pe.edu.ucs.jpa2022.entity.Editorial;
 
 /**
  *
  * @author admin
  */
-public interface PostService {
-    Post create(Post post);
-    Post update(Post post);
+public interface EditorialService {
+    Editorial create(Editorial editorial);
+    Editorial update(Editorial editorial);
     void delete(int id);
-    Post read(int id);
-    List<Post> readAll();
+    Editorial read(int id);
+    List<Editorial> readAll();
 }

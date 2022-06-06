@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pe.edu.ucs.jpa2022.entity.Post;
-import pe.edu.ucs.jpa2022.service.PostService;
+import pe.edu.ucs.jpa2022.entity.Editorial;
+import pe.edu.ucs.jpa2022.service.EditorialService;
 
 
 /**
@@ -24,35 +24,35 @@ import pe.edu.ucs.jpa2022.service.PostService;
  * @author admin
  */
 @RestController
-@RequestMapping("/post")
-public class PostRestController {
+@RequestMapping("/editorial")
+public class EditorialtRestController {
 
     @Autowired
-    private PostService postService;
+    private EditorialService editorialService;
 
     @GetMapping("/all")
-    public List<Post> getPosts() {
-        return postService.readAll();
+    public List<Editorial> getEditorial() {
+        return editorialService.readAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Post> getPost(@PathVariable int id) {
-        Post post = postService.read(id);
+    public ResponseEntity<Editorial> getEditorial(@PathVariable int id) {
+        Editorial post = editorialService.read(id);
         return ResponseEntity.ok(post);
     }
 
     @DeleteMapping("/{id}")
-    public void deletePost(@PathVariable int id) {        
-        postService.delete(id);
+    public void deleteEditorial(@PathVariable int id) {        
+        editorialService.delete(id);
     }
     @PostMapping("/add")
-    public Post addPost(@RequestBody Post post) {  
-        return postService.create(post);
+    public Editorial addEditorial(@RequestBody Editorial editorial) {  
+        return editorialService.create(editorial);
     }
     @PutMapping("/edit")
-    public Post editPost(@RequestBody Post post) {  
-        Post pos = new Post(post.getId(),post.getTitulo(),post.getDescripcion());
-        System.out.println(post.getId()+" , "+post.getTitulo()+" , "+post.getDescripcion());
-        return postService.update(post);
+    public Editorial editEditorial(@RequestBody Editorial editorial) {  
+        Editorial edi = new Editorial(editorial.getId(),editorial.getNombre(),editorial.getPais(),editorial.getEstado());
+        System.out.println(editorial.getId()+" , "+editorial.getNombre()+" , "+editorial.getPais()+" , "+editorial.getEstado());
+        return editorialService.update(editorial);
     }
 }

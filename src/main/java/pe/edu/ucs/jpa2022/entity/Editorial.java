@@ -24,12 +24,13 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name="post")
-public class Post {
+@Table(name="editorial")
+public class Editorial {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idpost")
+    @Column(name = "ideditorial")
     private Integer id;
-    private String titulo;
-    private String descripcion;
+    private String nombre;
+    private String pais;
+    private Boolean estado;
 }

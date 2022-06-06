@@ -4,28 +4,29 @@ $(document).ready(function () {
 });
 function listar() {
     $.ajax({
-        url: "/post/all",
+        url: "/editorial/all",
         type: 'GET',
         success: function (x) {
+            
             $("#tablita tbody tr").remove();
-            alert(x[0].titulo);
             for (var i = 0; i < x.length; i++) {
                 $("#tablita").append(
-                        "<tr><td>" + (i + 1) + "</td><td>" + x[i].id + "</td><td>" + x[i].titulo
-                        + "</td><td>" + x[i].descripcion + "</td><td><a href='#' onclick='editar("
-                        + x[i].id + ")'><i class='fa-solid fa-pen-to-square yelow'></i></a></td><td><a href='#' onclick='eliminar(" + x[i].id + ")'><i class='fa-solid fa-trash-can red'></i></a></td></tr>");
+                        "<tr><td>" + (i + 1) + "</td><td>" + x[i].id + "</td><td>" + x[i].nombre
+                        + "</td><td>" + x[i].pais + "</td><td>" + x[i].estado + "</td><td> <a href='#' \n\
+                        onclick='editar(" + x[i].id + ")'><i class='fa-solid fa-pen-to-square yelow'></i></a></td><td><a href='#' onclick='eliminar(" + x[i].id + ")'><i class='fa-solid fa-trash-can red'></i></a></td></tr>");
             }
         }
     });
 }
 function editar(id) {
     $.ajax({
-        url: "/post/" + id,
+        url: "/editorial/" + id,
         type: 'GET',
         success: function (w) {
-            $("#editar_titulo").val(w.titulo);
-            $("#editar_descripcion").val(w.descripcion);
-            $("#idpost").val(w.idpost);
+            $("#editar_nombre").val(w.nombre);
+            $("#editar_pais").val(w.pais);
+            $("#editar_estado").val(w.estado);
+            $("#ideditorial").val(w.ideditorial);
         }
     });
     $("#modalEditar").modal('show');
@@ -47,7 +48,7 @@ function eliminar(id) {
         callback: function (result) {
             if (result) {
                 $.ajax({
-                    url: "/post/" + id,
+                    url: "/editorial/" + id,
                     type: 'DELETE',
                     success: function (w) {
                         bootbox.alert({
@@ -69,13 +70,15 @@ function eliminar(id) {
     });
 }
 $("#guardar").click(function () {
-    var titulo = $("#titulo").val();
-    var desc = $("#descripcion").val();
+    var nombre = $("#nombre").val();
+    var pais = $("#pais").val();
+    var estado = $("#estado").val();
+    
     $.ajax({
-        url: "/post/add",
+        url: "/editorial/add",
         type: 'POST',
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({'titulo': titulo, 'descripcion': desc}),
+        data: JSON.stringify({'nombre': nombre, 'pais': pais,'estado': estado }),
         cache: false,
         success: function (w) {
             bootbox.alert({
@@ -91,13 +94,15 @@ $("#guardar").click(function () {
     $("#modalGuardar").modal('hide');
 });
 function limpiar() {
-    $("#titulo").val("");
-    $("#descripcion").val("");
+    $("#nombre").val("");
+    $("#pais").val("");
+    $("#estado").val("");
 }
 $("#modificar").click(function () {
-    var titulo = $("#editar_titulo").val();
-    var desc = $("#editar_descripcion").val();
-    var id = $("#idpost").val();
+    var nombre = $("#editar_nombre").val();
+    var pais = $("#editar_pais").val();
+    var estado = $("#editar_estado").val();
+    var id = $("#ideditorial").val();
     bootbox.confirm({
         message: "Realmente desea Modificar?",
         buttons: {
@@ -113,10 +118,10 @@ $("#modificar").click(function () {
         callback: function (result) {
             if (result) {
                 $.ajax({
-                    url: "/post/edit",
+                    url: "/editorial/edit",
                     type: 'PUT',
                     contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify({'idpost': id, 'titulo': titulo, 'descripcion': desc}),
+                    data: JSON.stringify({'ideditorial': id, 'nombre': nombre, 'pais': pais, 'estado': estado}),
                     cache: false,
                     success: function (w) {
                         bootbox.alert({

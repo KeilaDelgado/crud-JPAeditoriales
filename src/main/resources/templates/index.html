@@ -17,18 +17,19 @@
     </head>
     <body>
         <div class="container">
-            <h3>Lista de Posts</h3>
+            <h3>Lista de Editoriales</h3>
             <hr>
-            <button class="btn btn-danger mb-5"  data-toggle="modal" data-target="#modalGuardar" data-whatever="@mdo">Add</button>
+            <button class="btn btn-primary" style="margin-bottom: 20px; " data-toggle="modal" data-target="#modalGuardar" data-whatever="@mdo">Add</button>
             <div class="row">
                 <div class="col">
-                    <table class="table table-bordered" id="tablita">
+                    <table class="table" id="tablita">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">ID</th>
-                                <th scope="col">TITULO</th>
-                                <th scope="col">DESCRIPCION</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Pais</th>
+                                <th scope="col">Estado</th>
                                 <th scope="col" colspan="2">ACCION</th>
                             </tr>
                         </thead>
@@ -44,26 +45,30 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Nuevo Post</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <h5 class="modal-title" id="exampleModalLabel">Nuevo Editorial</h5>
+                        <button type="button" class="cerrar" data-dismiss="modal" aria-label="Cerrar">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <form>
                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Título:</label>
-                                <input type="text" class="form-control" id="titulo" placeholder="Título">
+                                <label for="recipient-name" class="col-form-label">Nombre:</label>
+                                <input type="text" class="form-control" id="nombre"></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="message-text" class="col-form-label">Descripción:</label>
-                                <textarea class="form-control" id="descripcion"></textarea>
+                                <label for="message-text" class="col-form-label">Pais:</label>
+                                <textarea class="form-control" id="pais"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Estado:</label>
+                                <textarea class="form-control" id="estado"></textarea>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="guardar">Registrar Post</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" id="guardar">Registrar Editorial</button>
                     </div>
                 </div>
             </div>
@@ -73,27 +78,30 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modificar Post</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <h5 class="modal-title" id="exampleModalLabel">Modificar Editorial</h5>
+                        <button type="button" class="cerrar" data-dismiss="modal" aria-label="Cerrar">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <form>
                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Título:</label>
-                                <input type="text" class="form-control" id="editar_titulo" placeholder="Título">
-                                <input type="hidden" class="form-control" id="idpost" value="0">
+                                <label for="recipient-name" class="col-form-label">Nombre:</label>
+                                <input type="text" class="form-control" id="editar_nombre" placeholder="Nombre">
+                                <input type="hidden" class="form-control" id="ideditorial" value="0">
                             </div>
                             <div class="form-group">
-                                <label for="message-text" class="col-form-label">Descripción:</label>
-                                <textarea class="form-control" id="editar_descripcion"></textarea>
+                                <label for="message-text" class="col-form-label">Pais:</label>
+                                <textarea class="form-control" id="editar_pais"></textarea>
                             </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Estado:</label>
+                                <textarea class="form-control" id="editar_estado"></textarea>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="modificar">Modificar Post</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" id="modificar">Modificar Editorial</button>
                     </div>
                 </div>
             </div>
